@@ -8,12 +8,15 @@ apt-get update
 apt install kubeadm=1.15.0-00 kubectl=1.15.0-00 kubelet=1.15.0-00
 kubeadm init
 
-// Already initialize
+# Already initialize
 kubeadm reset
+
+#To start using your cluster, you need to run the following as a regular user:
 
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
 export kubever=$(kubectl version | base64 | tr -d '\n')
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
 
