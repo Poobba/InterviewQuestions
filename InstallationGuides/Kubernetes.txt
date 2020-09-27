@@ -34,8 +34,13 @@ $kubeadm join 10.0.1.4:6443 --token qoxcfj.19qlvwdhrjvqza1y \
  # token list
  $kubeadm token list
 
-export kubever=$(kubectl version | base64 | tr -d '\n')
-kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+# Network plugin need to run to get node up and running
+$export kubever=$(kubectl version | base64 | tr -d '\n')
+
+$kubectl version | base64 | tr -d '\n'
+Q2xpZW50IFZlcnNpb246IHZlcnNpb24uSW5mb3tNYWpvcjoiMSIsIE1pbm9yOiIxNSIsIEdpdFZlcnNpb246InYxLjE1LjAiLCBHaXRDb21taXQ6ImU4NDYyYjViNWRjMjU4NGZkY2QxOGU2YmNmZTlmMWU0ZDk3MGE1MjkiLCBHaXRUcmVlU3RhdGU6ImNsZWFuIiwgQnVpbGREYXRlOiIyMDE5LTA2LTE5VDE2OjQwOjE2WiIsIEdvVmVyc2lvbjoiZ28xLjEyLjUiLCBDb21waWxlcjoiZ2MiLCBQbGF0Zm9ybToibGludXgvYW1kNjQifQpTZXJ2ZXIgVmVyc2lvbjogdmVyc2lvbi5JbmZve01ham9yOiIxIiwgTWlub3I6IjE1IiwgR2l0VmVyc2lvbjoidjEuMTUuMTIiLCBHaXRDb21taXQ6ImUyYTgyMmQ5ZjNjMmZkYjVjOWJmYmU2NDMxM2NmOWY2NTdmMGE3MjUiLCBHaXRUcmVlU3RhdGU6ImNsZWFuIiwgQnVpbGREYXRlOiIyMDIwLTA1LTA2VDA1OjA5OjQ4WiIsIEdvVmVyc2lvbjoiZ28xLjEyLjE3IiwgQ29tcGlsZXI6ImdjIiwgUGxhdGZvcm06ImxpbnV4L2FtZDY0In0K
+
+$kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
 
 kubectl get node
 kubectl get pods --all-namespaces
