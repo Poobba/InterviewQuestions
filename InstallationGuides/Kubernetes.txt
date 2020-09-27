@@ -24,6 +24,15 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 $kubeadm join 10.0.1.4:6443 --token qoxcfj.19qlvwdhrjvqza1y \
     --discovery-token-ca-cert-hash sha256:5afe058bd0e6e507895bb74a2a6ee2fed9dcc68adc94a4629911c0e36daa82c7 
+ 
+ # To get the Token for join command
+ $ kubeadm token create --print-join-command
+ 
+ #Generate token
+ $kubeadm token create
+ 
+ # token list
+ $kubeadm token list
 
 export kubever=$(kubectl version | base64 | tr -d '\n')
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
